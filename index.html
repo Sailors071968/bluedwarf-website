@@ -1,52 +1,650 @@
-BlueDwarf
-How It Works
-Testimonials
-Contact
-Know What Your Home is Worth
-Instant, Accurate Home Value Estimates powered by real-time market data
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Know What Your Home is Worth - BlueDwarf</title>
+    <style>
+        /* Reset and base styles - Safari compatible */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-Get My Home Value
-How It Works
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            -webkit-font-smoothing: antialiased;
+        }
 
-1
-Enter Your Address
-Simply type in your home address to get started
-2
-Provide Contact Info
-Enter your details to receive your personalized report
-3
-Get Instant Results
-Receive your home value estimate powered by real-time market data
-Trusted by Millions of Homeowners
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-"BlueDwarf gave me an accurate estimate that helped me price my home perfectly!"
+        /* Header */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
 
-- Sarah M., Austin TX
-"The instant results and detailed market data were exactly what I needed."
+        .header .container {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-justify-content: space-between;
+            justify-content: space-between;
+            -webkit-align-items: center;
+            align-items: center;
+            padding: 1rem 20px;
+        }
 
-- Mike R., Denver CO
-"Professional, accurate, and completely free. Highly recommended!"
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2563eb;
+        }
 
-- Lisa K., Miami FL
-Powered by Accurate Market Data
+        .nav {
+            display: -webkit-flex;
+            display: flex;
+            gap: 2rem;
+        }
 
-Real-Time MLS Data
-Access to up-to-date Multiple Listing Service information
-Comparable Sales Analysis
-Advanced algorithms analyze recent sales in your neighborhood
-Market Trends Integration
-Current market conditions and pricing trends included
-BlueDwarf
+        .nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            -webkit-transition: color 0.3s;
+            transition: color 0.3s;
+        }
 
-Accurate home valuations powered by real-time market data
-A service of Elite Marketing Lab LLC
-Support
+        .nav a:hover {
+            color: #2563eb;
+        }
 
-FAQs
-Privacy Policy
-Contact Support
-Contact
+        /* Hero section */
+        .hero {
+            background: -webkit-linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
 
-Questions? Email us at:
-support@bluedwarf.io
-© 2025 Elite Marketing Lab LLC. All rights reserved.
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Forms */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .address-form {
+            display: -webkit-flex;
+            display: flex;
+            gap: 0;
+        }
+
+        .address-form input {
+            -webkit-flex: 1;
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px 0 0 8px;
+            font-size: 1rem;
+        }
+
+        .address-form button {
+            padding: 1rem 2rem;
+            background: #1d4ed8;
+            color: white;
+            border: none;
+            border-radius: 0 8px 8px 0;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            -webkit-transition: background 0.3s;
+            transition: background 0.3s;
+        }
+
+        .address-form button:hover {
+            background: #1e40af;
+        }
+
+        .reg-form {
+            display: none;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .reg-form input {
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            -webkit-transition: border-color 0.3s;
+            transition: border-color 0.3s;
+        }
+
+        .reg-form input:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .reg-form button {
+            padding: 1rem;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            -webkit-transition: background 0.3s;
+            transition: background 0.3s;
+        }
+
+        .reg-form button:hover:not(:disabled) {
+            background: #1d4ed8;
+        }
+
+        .reg-form button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* Registration section */
+        .registration {
+            display: none;
+            padding: 4rem 0;
+            background: #f8fafc;
+            text-align: center;
+        }
+
+        .registration h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .registration p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #6b7280;
+        }
+
+        .error {
+            background: #fee2e2;
+            color: #dc2626;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid #fecaca;
+            display: none;
+        }
+
+        /* Content sections */
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1f2937;
+        }
+
+        /* Steps */
+        .steps {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+            gap: 2rem;
+            -webkit-justify-content: center;
+            justify-content: center;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem;
+            -webkit-flex: 1;
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #2563eb;
+            color: white;
+            border-radius: 50%;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: #f8fafc;
+        }
+
+        .testimonial-grid {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+            gap: 2rem;
+            -webkit-justify-content: center;
+            justify-content: center;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            -webkit-flex: 1;
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: #374151;
+        }
+
+        .testimonial cite {
+            font-weight: 600;
+            color: #2563eb;
+        }
+
+        /* Features */
+        .features {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+            gap: 2rem;
+            -webkit-justify-content: center;
+            justify-content: center;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 1rem;
+            -webkit-flex: 1;
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .feature h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1f2937;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            -webkit-justify-content: space-between;
+            justify-content: space-between;
+        }
+
+        .footer-brand {
+            -webkit-flex: 1;
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-brand h3 {
+            color: #2563eb;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand .company {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 1rem;
+        }
+
+        .footer-links, .footer-contact {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            gap: 0.5rem;
+            -webkit-flex: 1;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-links h4, .footer-contact h4 {
+            margin-bottom: 1rem;
+            color: #e5e7eb;
+        }
+
+        .footer-links a, .footer-contact a {
+            color: #d1d5db;
+            text-decoration: none;
+            -webkit-transition: color 0.3s;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover, .footer-contact a:hover {
+            color: #2563eb;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 1rem;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .address-form {
+                -webkit-flex-direction: column;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .address-form input {
+                border-radius: 8px;
+            }
+            
+            .address-form button {
+                border-radius: 8px;
+            }
+            
+            .nav {
+                gap: 1rem;
+            }
+            
+            .nav a {
+                font-size: 0.9rem;
+            }
+            
+            .steps, .testimonial-grid, .features {
+                -webkit-flex-direction: column;
+                flex-direction: column;
+            }
+            
+            .step, .testimonial, .feature {
+                min-width: auto;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+        }
+
+        /* Smooth scrolling - Safari compatible */
+        html {
+            scroll-behavior: smooth;
+            -webkit-scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">BlueDwarf</div>
+            <nav class="nav">
+                <a href="#how">How It Works</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="hero-section">
+            <div class="container">
+                <h1>Know What Your Home is Worth</h1>
+                <p>Instant, Accurate Home Value Estimates powered by real-time market data</p>
+                
+                <div class="form-container">
+                    <form class="address-form" id="address-form">
+                        <input type="text" id="address-input" placeholder="Enter your home address (e.g., 123 Main St, Austin, TX)" required>
+                        <button type="submit">Get My Home Value</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="registration" id="registration-section">
+            <div class="container">
+                <h2>Get Your Free Home Value Report</h2>
+                <p>Address: <strong id="address-display"></strong></p>
+                
+                <div class="error" id="error-message"></div>
+                
+                <div class="form-container">
+                    <form class="reg-form" id="reg-form">
+                        <input type="text" id="first-name" placeholder="First Name" required>
+                        <input type="text" id="last-name" placeholder="Last Name" required>
+                        <input type="email" id="email" placeholder="Email Address" required>
+                        <input type="tel" id="phone" placeholder="Phone Number" required>
+                        <button type="submit" id="submit-btn">Get My Home Value Report</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="how">
+            <div class="container">
+                <h2>How It Works</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Enter Your Address</h3>
+                        <p>Simply type in your home address to get started</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Provide Contact Info</h3>
+                        <p>Enter your details to receive your personalized report</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Get Instant Results</h3>
+                        <p>Receive your home value estimate powered by real-time market data</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section testimonials" id="testimonials">
+            <div class="container">
+                <h2>Trusted by Millions of Homeowners</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial">
+                        <p>"BlueDwarf gave me an accurate estimate that helped me price my home perfectly!"</p>
+                        <cite>- Sarah M., Austin TX</cite>
+                    </div>
+                    <div class="testimonial">
+                        <p>"The instant results and detailed market data were exactly what I needed."</p>
+                        <cite>- Mike R., Denver CO</cite>
+                    </div>
+                    <div class="testimonial">
+                        <p>"Professional, accurate, and completely free. Highly recommended!"</p>
+                        <cite>- Lisa K., Miami FL</cite>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Powered by Accurate Market Data</h2>
+                <div class="features">
+                    <div class="feature">
+                        <h3>Real-Time MLS Data</h3>
+                        <p>Access to up-to-date Multiple Listing Service information</p>
+                    </div>
+                    <div class="feature">
+                        <h3>Comparable Sales Analysis</h3>
+                        <p>Advanced algorithms analyze recent sales in your neighborhood</p>
+                    </div>
+                    <div class="feature">
+                        <h3>Market Trends Integration</h3>
+                        <p>Current market conditions and pricing trends included</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>BlueDwarf</h3>
+                    <p>Accurate home valuations powered by real-time market data</p>
+                    <p class="company">A service of Elite Marketing Lab LLC</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <a href="#faq">FAQs</a>
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#contact">Contact Support</a>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p>Questions? Email us at:</p>
+                    <a href="mailto:support@bluedwarf.io">support@bluedwarf.io</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Elite Marketing Lab LLC. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Form handling
+        document.getElementById('address-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const address = document.getElementById('address-input').value.trim();
+            
+            if (address) {
+                document.getElementById('address-display').textContent = address;
+                document.getElementById('hero-section').style.display = 'none';
+                document.getElementById('registration-section').style.display = 'block';
+                document.querySelector('.reg-form').style.display = 'flex';
+            }
+        });
+
+        document.getElementById('reg-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const firstName = document.getElementById('first-name').value.trim();
+            const lastName = document.getElementById('last-name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const address = document.getElementById('address-display').textContent;
+            
+            if (!firstName || !lastName || !email || !phone) {
+                showError('Please fill in all fields.');
+                return;
+            }
+            
+            if (!isValidEmail(email)) {
+                showError('Please enter a valid email address.');
+                return;
+            }
+            
+            if (!isValidPhone(phone)) {
+                showError('Please enter a valid phone number.');
+                return;
+            }
+            
+            // Simulate form submission
+            const submitBtn = document.getElementById('submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing...';
+            
+            setTimeout(() => {
+                alert('Thank you! Your home value report will be emailed to you shortly.');
+                // Reset form
+                document.getElementById('reg-form').reset();
+                document.getElementById('hero-section').style.display = 'block';
+                document.getElementById('registration-section').style.display = 'none';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Get My Home Value Report';
+            }, 2000);
+        });
+
+        function showError(message) {
+            const errorDiv = document.getElementById('error-message');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            setTimeout(() => {
+                errorDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function isValidPhone(phone) {
+            return /^[\d\s\-\(\)\+]{10,}$/.test(phone.replace(/\s/g, ''));
+        }
+    </script>
+</body>
+</html>

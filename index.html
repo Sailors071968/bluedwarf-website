@@ -98,36 +98,11 @@
             transform: scale(1.05);
         }
         
-        .logo-icon {
+        .logo-image {
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .logo-icon::before {
-            content: '';
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background: radial-gradient(circle, #60a5fa 0%, #3b82f6 70%);
-            border-radius: 50%;
-            top: 8px;
-            left: 10px;
-            box-shadow: 0 0 15px rgba(96, 165, 250, 0.5);
-        }
-        
-        .logo-icon::after {
-            content: '🏠';
-            position: absolute;
-            font-size: 16px;
-            z-index: 2;
-            filter: brightness(0) invert(1);
+            border-radius: 8px;
+            object-fit: contain;
         }
         
         .logo-text {
@@ -473,7 +448,7 @@
                 grid-template-columns: 1fr;
             }
             
-            .logo-icon {
+            .logo-image {
                 width: 40px;
                 height: 40px;
             }
@@ -523,7 +498,7 @@
     <header class="header">
         <nav class="nav container">
             <a href="#" class="logo">
-                <div class="logo-icon"></div>
+                <img src="bluedwarf-logo.png" alt="BlueDwarf Logo" class="logo-image">
                 <span class="logo-text">BlueDwarf</span>
             </a>
             <ul class="nav-links">

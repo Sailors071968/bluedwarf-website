@@ -423,14 +423,14 @@
         <div class="nav-container">
             <a href="#" class="logo" onclick="scrollToTop()">🏠 BlueDwarf</a>
             <ul class="nav-links">
-    <li><a href="javascript:void(0)" onclick="scrollToSection('professionals')">Professionals</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="contact.html">Contact</a></li>
-</ul>
-<div class="nav-buttons">
-    <button class="btn btn-outline" onclick="openLoginModal()">Login</button>
-    <button class="btn btn-primary" onclick="scrollToSearchForm()">Get Started</button>
-</div>
+                <li><a href="#" onclick="scrollToSection('professionals')">Professionals</a></li>
+                <li><a href="#" onclick="openAboutModal()">About</a></li>
+                <li><a href="#" onclick="openContactModal()">Contact</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <button class="btn btn-outline" onclick="openLoginModal()">Login</button>
+                <button class="btn btn-primary" onclick="scrollToSearchForm()">Get Started</button>
+            </div>
         </div>
     </nav>
 
@@ -439,7 +439,7 @@
             <h1>🏠 Property Analysis</h1>
             <p>Instant Data • Full US Coverage</p>
             
-            <div class="search-container">
+            <div class="search-container" id="searchContainer">
                 <form class="search-form" id="searchForm">
                     <div class="input-group">
                         <label for="address">Address</label>
@@ -541,9 +541,85 @@
                 </div>
                 <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 1rem;">Login</button>
                 <p style="text-align: center; color: #666;">
-                    Don't have an account? <a href="#" style="color: #667eea;">Sign up here</a>
+                    Don't have an account? <a href="#" onclick="openSignupModal()" style="color: #667eea;">Sign up here</a>
                 </p>
             </form>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeSignupModal()">&times;</span>
+            <h2 style="margin-bottom: 2rem; text-align: center;">Sign Up for BlueDwarf</h2>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 1rem;">Sign Up</button>
+                <p style="text-align: center; color: #666;">
+                    Already have an account? <a href="#" onclick="openLoginModal(); closeSignupModal();" style="color: #667eea;">Login here</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- About Modal -->
+    <div id="aboutModal" class="modal">
+        <div class="modal-content" style="max-width: 600px;">
+            <span class="close" onclick="closeAboutModal()">&times;</span>
+            <h2 style="margin-bottom: 2rem; text-align: center;">About BlueDwarf</h2>
+            <div style="line-height: 1.6;">
+                <p style="margin-bottom: 1rem;">BlueDwarf is a comprehensive property analysis platform that provides instant, accurate property valuations and market insights across the United States.</p>
+                <p style="margin-bottom: 1rem;">Our platform connects property owners, investors, and real estate professionals with the data and tools they need to make informed decisions in today's dynamic real estate market.</p>
+                <h3 style="margin: 1.5rem 0 1rem 0; color: #667eea;">Company Information</h3>
+                <p style="margin-bottom: 0.5rem;"><strong>Company:</strong> Elite Marketing Lab LLC</p>
+                <p style="margin-bottom: 0.5rem;"><strong>EIN:</strong> 99-0948389</p>
+                <p style="margin-bottom: 0.5rem;"><strong>Address:</strong> 912 1/2 J Street, Sacramento, CA 95814</p>
+                <p style="margin-bottom: 0.5rem;"><strong>Email:</strong> support@bluedwarf.io</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content" style="max-width: 600px;">
+            <span class="close" onclick="closeContactModal()">&times;</span>
+            <h2 style="margin-bottom: 2rem; text-align: center;">Contact BlueDwarf</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="contactName">Name</label>
+                    <input type="text" id="contactName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactEmail">Email</label>
+                    <input type="email" id="contactEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactSubject">Subject</label>
+                    <input type="text" id="contactSubject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactMessage">Message</label>
+                    <textarea id="contactMessage" name="message" rows="4" style="width: 100%; padding: 1rem; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem; font-family: inherit; resize: vertical;" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 1rem;">Send Message</button>
+            </form>
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #eee;">
+                <h3 style="margin-bottom: 1rem; color: #667eea;">Contact Information</h3>
+                <p style="margin-bottom: 0.5rem;"><strong>Email:</strong> support@bluedwarf.io</p>
+                <p style="margin-bottom: 0.5rem;"><strong>Address:</strong> 912 1/2 J Street, Sacramento, CA 95814</p>
+                <p style="margin-bottom: 0.5rem;"><strong>Business Hours:</strong> Monday - Friday, 9:00 AM - 5:00 PM PST</p>
+            </div>
         </div>
     </div>
 
@@ -565,22 +641,22 @@
                 });
             }
         }
-
-        function scrollToSearchForm() {
-    const searchContainer = document.querySelector('.search-container');
-    if (searchContainer) {
-        searchContainer.scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'center' 
-        });
-    }
-}
-
+        
         function scrollToTop() {
             window.scrollTo({ 
                 top: 0, 
                 behavior: 'smooth' 
             });
+        }
+        
+        function scrollToSearchForm() {
+            const searchContainer = document.getElementById('searchContainer');
+            if (searchContainer) {
+                searchContainer.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+            }
         }
         
         // Professional search function
@@ -598,11 +674,49 @@
             document.getElementById('loginModal').style.display = 'none';
         }
         
+        function openSignupModal() {
+            closeLoginModal();
+            document.getElementById('signupModal').style.display = 'block';
+        }
+        
+        function closeSignupModal() {
+            document.getElementById('signupModal').style.display = 'none';
+        }
+        
+        function openAboutModal() {
+            document.getElementById('aboutModal').style.display = 'block';
+        }
+        
+        function closeAboutModal() {
+            document.getElementById('aboutModal').style.display = 'none';
+        }
+        
+        function openContactModal() {
+            document.getElementById('contactModal').style.display = 'block';
+        }
+        
+        function closeContactModal() {
+            document.getElementById('contactModal').style.display = 'none';
+        }
+        
         // Close modal when clicking outside
         window.onclick = function(event) {
-            const modal = document.getElementById('loginModal');
-            if (event.target == modal) {
-                modal.style.display = 'none';
+            const loginModal = document.getElementById('loginModal');
+            const signupModal = document.getElementById('signupModal');
+            const aboutModal = document.getElementById('aboutModal');
+            const contactModal = document.getElementById('contactModal');
+            
+            if (event.target == loginModal) {
+                loginModal.style.display = 'none';
+            }
+            if (event.target == signupModal) {
+                signupModal.style.display = 'none';
+            }
+            if (event.target == aboutModal) {
+                aboutModal.style.display = 'none';
+            }
+            if (event.target == contactModal) {
+                contactModal.style.display = 'none';
             }
         }
         
@@ -658,11 +772,24 @@
             }
         });
         
-        // Login form functionality
+        // Form functionality
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Login functionality will be available soon. Thank you for your interest!');
             closeLoginModal();
+        });
+        
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Sign up functionality will be available soon. Thank you for your interest!');
+            closeSignupModal();
+        });
+        
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            closeContactModal();
+            document.getElementById('contactForm').reset();
         });
         
         function displayResults(data) {
@@ -698,22 +825,26 @@
                     '<h3 style="color: #f57c00; margin-bottom: 1rem;">Comparable Properties</h3>' +
                     '<p style="color: #666; margin-bottom: 1rem;">Based on rentals within a 1.5 mile radius seen in the last 270 days.</p>' +
                     '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">' +
-                        '<div style="background: white; padding: 1rem; border-radius: 6px; border-left: 4px solid #ff9800;">' +
+                        '<div style="background: white; padding: 1rem; border-radius: 6px; border-left: 4px solid #ff9800; position: relative;">' +
+                            '<div style="position: absolute; top: -8px; left: -8px; background: #ff9800; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px;">1</div>' +
                             '<p style="font-weight: 600;">8155 Oahu Dr</p>' +
                             '<p style="color: #666;">Fair Oaks, CA 95628</p>' +
                             '<p style="color: #667eea; font-weight: 600;">$2,700 • 3 bed, 2 bath</p>' +
                         '</div>' +
-                        '<div style="background: white; padding: 1rem; border-radius: 6px; border-left: 4px solid #ff9800;">' +
+                        '<div style="background: white; padding: 1rem; border-radius: 6px; border-left: 4px solid #ff9800; position: relative;">' +
+                            '<div style="position: absolute; top: -8px; left: -8px; background: #ff9800; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px;">2</div>' +
                             '<p style="font-weight: 600;">5139 Mauna Loa Ct</p>' +
                             '<p style="color: #666;">Fair Oaks, CA 95628</p>' +
                             '<p style="color: #667eea; font-weight: 600;">$2,995 • 4 bed, 2 bath</p>' +
                         '</div>' +
-                        '<div style="background: white; padding: 1rem; border-radius: 6px; border-left: 4px solid #ff9800;">' +
+                        '<div style="background: white; padding: 1rem; border-radius: 6px; border-left: 4px solid #ff9800; position: relative;">' +
+                            '<div style="position: absolute; top: -8px; left: -8px; background: #ff9800; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px;">3</div>' +
                             '<p style="font-weight: 600;">5639 Beech Ave</p>' +
                             '<p style="color: #666;">Orangevale, CA 95662</p>' +
                             '<p style="color: #667eea; font-weight: 600;">$2,879 • 3 bed, 2 bath</p>' +
                         '</div>' +
-                        '<div style="background: white; padding: 1rem; border-radius: 6px; border-left: 4px solid #ff9800;">' +
+                        '<div style="background: white; padding: 1rem; border-radius: 6px; border-left: 4px solid #ff9800; position: relative;">' +
+                            '<div style="position: absolute; top: -8px; left: -8px; background: #ff9800; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px;">4</div>' +
                             '<p style="font-weight: 600;">8130 Treecrest Ave</p>' +
                             '<p style="color: #666;">Fair Oaks, CA 95628</p>' +
                             '<p style="color: #667eea; font-weight: 600;">$2,500 • 3 bed, 1 bath</p>' +
@@ -738,6 +869,7 @@
                     '</div>' +
                     '<div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px;">' +
                         '<h3 style="margin-bottom: 1rem;">Comparable Properties Map</h3>' +
+                        '<p style="color: #666; margin-bottom: 1rem; font-size: 0.9rem;">Numbers on the map correspond to the numbered properties listed above.</p>' +
                         '<div id="comparableMap" class="large-map-container"></div>' +
                     '</div>' +
                 '</div>' +
@@ -764,7 +896,7 @@
                 aerialViewContainer.innerHTML = '<iframe width="100%" height="150" frameborder="0" style="border:0; border-radius: 8px;" src="https://maps.google.com/maps?q=' + encodedAddress + '&t=k&z=18&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe>';
             }
             
-            // Initialize Comparable Properties Map with multiple markers
+            // Initialize Comparable Properties Map with numbered markers
             const comparableMapContainer = document.getElementById('comparableMap' );
             if (comparableMapContainer) {
                 // Create a map with multiple comparable property locations

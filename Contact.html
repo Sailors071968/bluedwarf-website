@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - BlueDwarf Property Analysis Platform</title>
+    <title>Contact BlueDwarf - Property Analysis Platform</title>
     <style>
         * {
             margin: 0;
@@ -112,8 +112,14 @@
             color: white;
         }
 
+        .hero-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 800;
             margin-bottom: 1rem;
             letter-spacing: -2px;
@@ -122,12 +128,12 @@
         .hero p {
             font-size: 1.2rem;
             opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
+            margin-bottom: 2rem;
+            font-weight: 400;
         }
 
         .content {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 4rem 2rem;
         }
@@ -139,19 +145,54 @@
             margin-bottom: 4rem;
         }
 
-        .contact-form {
-            background: white;
-            padding: 3rem;
+        .contact-info {
+            background: #f8f9ff;
+            padding: 2rem;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             border-left: 4px solid #667eea;
         }
 
-        .contact-form h2 {
+        .contact-info h3 {
+            color: #667eea;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item h4 {
             color: #333;
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .contact-item a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form h3 {
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .form-group {
@@ -166,20 +207,19 @@
         }
 
         .form-group input,
-        .form-group textarea,
-        .form-group select {
+        .form-group select,
+        .form-group textarea {
             width: 100%;
-            padding: 1rem;
+            padding: 0.8rem;
             border: 2px solid #e0e0e0;
             border-radius: 8px;
             font-size: 1rem;
             transition: border-color 0.2s ease;
-            font-family: inherit;
         }
 
         .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
+        .form-group select:focus,
+        .form-group textarea:focus {
             outline: none;
             border-color: #667eea;
         }
@@ -189,107 +229,75 @@
             min-height: 120px;
         }
 
-        .contact-info {
-            padding: 2rem 0;
-        }
-
-        .contact-info h2 {
-            color: #333;
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            font-weight: 700;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background: #f8f9ff;
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #667eea;
+            color: white;
+            border: none;
             border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
         }
 
-        .contact-icon {
-            font-size: 1.5rem;
-            margin-right: 1rem;
-            color: #667eea;
-            margin-top: 0.2rem;
+        .submit-btn:hover {
+            background: #5a6fd8;
         }
 
-        .contact-details h3 {
+        .faq-section {
+            margin-top: 4rem;
+        }
+
+        .faq-section h2 {
+            text-align: center;
             color: #333;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
         }
 
-        .contact-details p {
-            color: #666;
-            margin: 0;
-        }
-
-        .business-hours {
+        .faq-item {
             background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
-        .business-hours h3 {
-            color: #667eea;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
             font-weight: 600;
-        }
-
-        .hours-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .hours-item {
+            color: #333;
             display: flex;
             justify-content: space-between;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #f0f0f0;
+            align-items: center;
         }
 
-        .hours-item:last-child {
-            border-bottom: none;
+        .faq-question:hover {
+            background: #f8f9ff;
         }
 
-        .day {
-            font-weight: 600;
-            color: #333;
-        }
-
-        .time {
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
             color: #666;
+            line-height: 1.6;
         }
 
-        .success-message {
-            display: none;
-            background: #d4edda;
-            color: #155724;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            border: 1px solid #c3e6cb;
+        .faq-toggle {
+            font-size: 1.2rem;
+            color: #667eea;
         }
 
+        /* Mobile responsive styles */
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .hero h1 { font-size: 2.5rem; }
-            .contact-grid {
-                grid-template-columns: 1fr;
+            .content { padding: 2rem 1rem; }
+            .contact-grid { 
+                grid-template-columns: 1fr; 
                 gap: 2rem;
-            }
-            .hours-grid {
-                grid-template-columns: 1fr;
-            }
-            .contact-form {
-                padding: 2rem;
             }
         }
     </style>
@@ -304,131 +312,153 @@
                 <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
             <div class="nav-buttons">
-                <a href="index.html" class="btn btn-outline">Back to Home</a>
-                <a href="index.html#hero" class="btn btn-primary">Get Started</a>
+                <a href="index.html" class="btn btn-outline">Login</a>
+                <a href="index.html" class="btn btn-primary">Get Started</a>
             </div>
         </div>
     </nav>
 
     <section class="hero">
-        <h1>Contact Us</h1>
-        <p>Get in touch with our team for support, partnerships, or general inquiries</p>
+        <div class="hero-container">
+            <h1>Contact Us</h1>
+            <p>Get in touch with our team for support, partnerships, or general inquiries</p>
+        </div>
     </section>
 
     <div class="content">
         <div class="contact-grid">
-            <div class="contact-form">
-                <h2>Send us a message</h2>
-                <div class="success-message" id="successMessage">
-                    Thank you for your message! We'll get back to you within 24 hours.
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                
+                <div class="contact-item">
+                    <h4>📧 Email Support</h4>
+                    <p><a href="mailto:support@bluedwarf.io">support@bluedwarf.io</a></p>
+                    <p>For technical support and general inquiries</p>
                 </div>
+
+                <div class="contact-item">
+                    <h4>🏢 Business Address</h4>
+                    <p>Elite Marketing Lab LLC<br>
+                    912 1/2 J Street<br>
+                    Sacramento, CA 95814</p>
+                </div>
+
+                <div class="contact-item">
+                    <h4>🆔 Company Information</h4>
+                    <p><strong>EIN:</strong> 99-0948389<br>
+                    <strong>Founded:</strong> 2024</p>
+                </div>
+
+                <div class="contact-item">
+                    <h4>⏰ Response Time</h4>
+                    <p>We typically respond to inquiries within 24 hours during business days.</p>
+                </div>
+
+                <div class="contact-item">
+                    <h4>🤝 Partnerships</h4>
+                    <p>Interested in partnering with BlueDwarf? Contact us to discuss collaboration opportunities.</p>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h3>Send us a Message</h3>
                 <form id="contactForm">
                     <div class="form-group">
                         <label for="name">Full Name *</label>
                         <input type="text" id="name" name="name" required>
                     </div>
+
                     <div class="form-group">
                         <label for="email">Email Address *</label>
                         <input type="email" id="email" name="email" required>
                     </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
+
                     <div class="form-group">
                         <label for="subject">Subject *</label>
                         <select id="subject" name="subject" required>
                             <option value="">Select a subject</option>
-                            <option value="general">General Inquiry</option>
-                            <option value="support">Technical Support</option>
-                            <option value="professional">Professional Services</option>
+                            <option value="technical-support">Technical Support</option>
+                            <option value="general-inquiry">General Inquiry</option>
                             <option value="partnership">Partnership Opportunity</option>
-                            <option value="billing">Billing Question</option>
-                            <option value="feedback">Feedback</option>
+                            <option value="professional-signup">Professional Registration</option>
+                            <option value="data-accuracy">Data Accuracy Issue</option>
+                            <option value="feature-request">Feature Request</option>
                             <option value="other">Other</option>
                         </select>
                     </div>
+
                     <div class="form-group">
                         <label for="message">Message *</label>
                         <textarea id="message" name="message" placeholder="Please provide details about your inquiry..." required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+
+                    <button type="submit" class="submit-btn">Send Message</button>
                 </form>
-            </div>
-
-            <div class="contact-info">
-                <h2>Get in touch</h2>
-                
-                <div class="contact-item">
-                    <span class="contact-icon">📍</span>
-                    <div class="contact-details">
-                        <h3>Office Address</h3>
-                        <p>912 1/2 J Street  
-
-                        Sacramento, CA 95814  
-
-                        United States</p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <span class="contact-icon">📧</span>
-                    <div class="contact-details">
-                        <h3>Email</h3>
-                        <p>support@bluedwarf.io  
-
-                        partnerships@bluedwarf.io</p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <span class="contact-icon">🏢</span>
-                    <div class="contact-details">
-                        <h3>Company</h3>
-                        <p>Elite Marketing Lab LLC  
-
-                        EIN: 99-0948389</p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <span class="contact-icon">🌐</span>
-                    <div class="contact-details">
-                        <h3>Website</h3>
-                        <p>www.bluedwarf.io  
-
-                        Property Analysis Platform</p>
-                    </div>
-                </div>
-
-                <div class="business-hours">
-                    <h3>Support Hours</h3>
-                    <div class="hours-grid">
-                        <div class="hours-item">
-                            <span class="day">Monday - Friday</span>
-                            <span class="time">9:00 AM - 6:00 PM PST</span>
-                        </div>
-                        <div class="hours-item">
-                            <span class="day">Saturday</span>
-                            <span class="time">10:00 AM - 4:00 PM PST</span>
-                        </div>
-                        <div class="hours-item">
-                            <span class="day">Sunday</span>
-                            <span class="time">10:00 AM - 4:00 PM PST</span>
-                        </div>
-                        <div class="hours-item">
-                            <span class="day">Holidays</span>
-                            <span class="time">Limited Support</span>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
-        <div style="background: #f8f9ff; padding: 3rem; border-radius: 12px; text-align: center; margin-top: 3rem;">
-            <h3 style="color: #667eea; margin-bottom: 1rem;">Need Immediate Assistance?</h3>
-            <p style="color: #666; margin-bottom: 2rem;">For urgent technical issues or time-sensitive inquiries, please email us directly at support@bluedwarf.io with "URGENT" in the subject line.</p>
-            <p style="color: #666; font-size: 0.9rem;">We typically respond to all inquiries within 24 hours during business days. For complex technical issues, our team may require additional time to provide a comprehensive solution.</p>
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    How accurate is the property data?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer" style="display: none;">
+                    Our property analysis maintains 95% accuracy by integrating multiple authoritative data sources including RentCast API, public records, and real-time market data. We continuously update our algorithms to ensure the most current and accurate information.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Is BlueDwarf free to use?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer" style="display: none;">
+                    Basic property searches and analysis are free for all users. We also offer premium features and professional accounts for real estate professionals who want to manage territories and access advanced tools.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    How do I become a verified professional?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer" style="display: none;">
+                    Click "Get Started" on our homepage to access the professional registration form. We verify licenses and credentials before approving professional accounts. Verified professionals can manage service territories and connect with potential clients.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    What areas does BlueDwarf cover?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer" style="display: none;">
+                    BlueDwarf provides property analysis coverage across all 50 United States. Our data sources include comprehensive information for residential and commercial properties nationwide.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    How often is the data updated?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer" style="display: none;">
+                    Our platform updates property data in real-time through API integrations. Market data, comparable properties, and rental estimates are refreshed continuously to provide the most current information available.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Can I use BlueDwarf for commercial properties?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer" style="display: none;">
+                    Yes, BlueDwarf supports both residential and commercial property analysis. Our platform provides comprehensive data for various property types including office buildings, retail spaces, and multi-family properties.
+                </div>
+            </div>
         </div>
     </div>
 
@@ -438,24 +468,36 @@
     </footer>
 
     <script>
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const toggle = element.querySelector('.faq-toggle');
+            
+            if (answer.style.display === 'none' || answer.style.display === '') {
+                answer.style.display = 'block';
+                toggle.textContent = '−';
+            } else {
+                answer.style.display = 'none';
+                toggle.textContent = '+';
+            }
+        }
+
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Show success message
-            const successMessage = document.getElementById('successMessage');
-            successMessage.style.display = 'block';
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
+            
+            // Simulate form submission
+            alert(`Thank you, ${name}! Your message has been received. We'll respond to ${email} within 24 hours.`);
             
             // Reset form
             this.reset();
-            
-            // Scroll to success message
-            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
-            // Hide success message after 5 seconds
-            setTimeout(() => {
-                successMessage.style.display = 'none';
-            }, 5000);
         });
     </script>
 </body>
 </html>
+

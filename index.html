@@ -242,159 +242,46 @@
             color: #333;
         }
 
-        .features {
+        .professionals {
             background: #fafbfc;
         }
 
-        .features-grid {
+        .professionals-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
+            gap: 1.5rem;
         }
 
-        .feature {
-            text-align: center;
-            padding: 2rem;
+        .professional-item {
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s ease;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #667eea;
         }
 
-        .feature:hover {
-            transform: translateY(-4px);
+        .professional-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
         }
 
-        .feature-icon {
-            font-size: 3rem;
+        .professional-title {
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .professional-location {
+            color: #666;
+            font-size: 0.9rem;
             margin-bottom: 1rem;
         }
 
-        .feature h3 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
-
-        .feature p {
+        .professional-contact {
+            font-size: 0.9rem;
             color: #666;
-            font-size: 0.95rem;
-        }
-
-        .professionals-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .professional-card {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            text-align: center;
-            transition: transform 0.2s ease;
-        }
-
-        .professional-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .professional-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: #667eea;
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: white;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #666;
-        }
-
-        .about-stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .about-stat {
-            text-align: center;
-            padding: 2rem;
-            background: #f8f9ff;
-            border-radius: 12px;
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
-        .contact-form {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.2s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .contact-info {
-            padding: 2rem 0;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-        }
-
-        .contact-icon {
-            font-size: 1.5rem;
-            margin-right: 1rem;
-            color: #667eea;
         }
 
         .results-container {
@@ -478,6 +365,31 @@
             color: #000;
         }
 
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
         /* Mobile responsive styles */
         @media (max-width: 768px) {
             .nav-links { display: none; }
@@ -500,14 +412,8 @@
                 flex-direction: column;
                 gap: 2rem;
             }
-            .features-grid,
-            .professionals-grid {
+            .professionals-list {
                 grid-template-columns: 1fr;
-            }
-            .about-content,
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
             }
         }
     </style>
@@ -517,10 +423,9 @@
         <div class="nav-container">
             <a href="#" class="logo" onclick="scrollToTop()">🏠 BlueDwarf</a>
             <ul class="nav-links">
-                <li><a onclick="scrollToSection('features')">Features</a></li>
                 <li><a onclick="scrollToSection('professionals')">Professionals</a></li>
-                <li><a onclick="scrollToSection('about')">About</a></li>
-                <li><a onclick="scrollToSection('contact')">Contact</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="nav-buttons">
                 <button class="btn btn-outline" onclick="openLoginModal()">Login</button>
@@ -576,185 +481,45 @@
         <div id="resultsContent"></div>
     </div>
 
-    <section class="section features" id="features">
+    <section class="section professionals" id="professionals">
         <div class="section-container">
-            <h2 class="section-title">Platform Features</h2>
-            <div class="features-grid">
-                <div class="feature">
-                    <div class="feature-icon">🏡</div>
-                    <h3>Property Analysis</h3>
-                    <p>Comprehensive property details, market analysis, and valuation reports with interactive maps and comparable properties.</p>
+            <h2 class="section-title">Local Professionals</h2>
+            <div class="professionals-list">
+                <div class="professional-item">
+                    <div class="professional-name">Michael Rodriguez</div>
+                    <div class="professional-title">Real Estate Agent</div>
+                    <div class="professional-location">Sacramento County, CA</div>
+                    <div class="professional-contact">License: 01234567 • 15+ years experience</div>
                 </div>
-                <div class="feature">
-                    <div class="feature-icon">👥</div>
-                    <h3>Local Professionals</h3>
-                    <p>Connect with verified real estate agents, mortgage lenders, attorneys, and other professionals in your area.</p>
+                <div class="professional-item">
+                    <div class="professional-name">Sarah Chen</div>
+                    <div class="professional-title">Mortgage Lender</div>
+                    <div class="professional-location">Fair Oaks, CA</div>
+                    <div class="professional-contact">NMLS: 987654 • First-time buyer specialist</div>
                 </div>
-                <div class="feature">
-                    <div class="feature-icon">📊</div>
-                    <h3>Professional Dashboard</h3>
-                    <p>Advanced tools for professionals to manage territories, track leads, and grow their business effectively.</p>
+                <div class="professional-item">
+                    <div class="professional-name">David Thompson</div>
+                    <div class="professional-title">Real Estate Attorney</div>
+                    <div class="professional-location">Sacramento, CA</div>
+                    <div class="professional-contact">State Bar: 123456 • Transaction specialist</div>
                 </div>
-                <div class="feature">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Territory Management</h3>
-                    <p>Choose specific zip codes and geographic areas to target your ideal customers and market segments.</p>
+                <div class="professional-item">
+                    <div class="professional-name">Lisa Martinez</div>
+                    <div class="professional-title">Property Inspector</div>
+                    <div class="professional-location">Placer County, CA</div>
+                    <div class="professional-contact">Certified Inspector • 8+ years experience</div>
                 </div>
-                <div class="feature">
-                    <div class="feature-icon">💳</div>
-                    <h3>Flexible Pricing</h3>
-                    <p>Scalable pricing plans that grow with your business, from individual users to enterprise solutions.</p>
+                <div class="professional-item">
+                    <div class="professional-name">Robert Kim</div>
+                    <div class="professional-title">Insurance Agent</div>
+                    <div class="professional-location">Roseville, CA</div>
+                    <div class="professional-contact">License: 0987654 • Home & auto specialist</div>
                 </div>
-                <div class="feature">
-                    <div class="feature-icon">📱</div>
-                    <h3>Mobile Optimized</h3>
-                    <p>Fully responsive design that works seamlessly across all devices, from desktop to mobile.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section" id="professionals">
-        <div class="section-container">
-            <h2 class="section-title">Featured Professionals</h2>
-            <div class="professionals-grid">
-                <div class="professional-card">
-                    <div class="professional-avatar">👨‍💼</div>
-                    <h3>Michael Rodriguez</h3>
-                    <p><strong>Real Estate Agent</strong></p>
-                    <p>Sacramento County Specialist</p>
-                    <p>15+ years experience • 200+ transactions</p>
-                    <button class="btn btn-primary" style="margin-top: 1rem;">Contact</button>
-                </div>
-                <div class="professional-card">
-                    <div class="professional-avatar">👩‍💼</div>
-                    <h3>Sarah Chen</h3>
-                    <p><strong>Mortgage Lender</strong></p>
-                    <p>First-Time Buyer Expert</p>
-                    <p>10+ years experience • $50M+ funded</p>
-                    <button class="btn btn-primary" style="margin-top: 1rem;">Contact</button>
-                </div>
-                <div class="professional-card">
-                    <div class="professional-avatar">👨‍⚖️</div>
-                    <h3>David Thompson</h3>
-                    <p><strong>Real Estate Attorney</strong></p>
-                    <p>Transaction & Contract Specialist</p>
-                    <p>12+ years experience • 500+ closings</p>
-                    <button class="btn btn-primary" style="margin-top: 1rem;">Contact</button>
-                </div>
-                <div class="professional-card">
-                    <div class="professional-avatar">🏠</div>
-                    <h3>Lisa Martinez</h3>
-                    <p><strong>Property Inspector</strong></p>
-                    <p>Certified Home Inspector</p>
-                    <p>8+ years experience • 1000+ inspections</p>
-                    <button class="btn btn-primary" style="margin-top: 1rem;">Contact</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section" id="about">
-        <div class="section-container">
-            <h2 class="section-title">About BlueDwarf</h2>
-            <div class="about-content">
-                <div>
-                    <div class="about-text">
-                        <p>BlueDwarf is a comprehensive property analysis platform that connects property seekers with verified real estate professionals. Our mission is to provide accurate, instant property data and facilitate meaningful connections in the real estate market.</p>
-                        
-                        <p>Founded by Elite Marketing Lab LLC, we leverage advanced technology and market expertise to deliver reliable property valuations, rental estimates, and market insights across the United States.</p>
-                        
-                        <p>Whether you're buying, selling, renting, or investing, BlueDwarf provides the tools and connections you need to make informed real estate decisions.</p>
-                    </div>
-                </div>
-                <div class="about-stats">
-                    <div class="about-stat">
-                        <h3 style="color: #667eea; font-size: 2rem;">10,000+</h3>
-                        <p>Properties Analyzed</p>
-                    </div>
-                    <div class="about-stat">
-                        <h3 style="color: #667eea; font-size: 2rem;">500+</h3>
-                        <p>Verified Professionals</p>
-                    </div>
-                    <div class="about-stat">
-                        <h3 style="color: #667eea; font-size: 2rem;">95%</h3>
-                        <p>Accuracy Rate</p>
-                    </div>
-                    <div class="about-stat">
-                        <h3 style="color: #667eea; font-size: 2rem;">24/7</h3>
-                        <p>Platform Availability</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section" id="contact">
-        <div class="section-container">
-            <h2 class="section-title">Contact Us</h2>
-            <div class="contact-content">
-                <div class="contact-form">
-                    <h3 style="margin-bottom: 1.5rem;">Send us a message</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
-                    </form>
-                </div>
-                <div class="contact-info">
-                    <h3 style="margin-bottom: 2rem;">Get in touch</h3>
-                    <div class="contact-item">
-                        <span class="contact-icon">📍</span>
-                        <div>
-                            <strong>Address</strong>  
-
-                            912 1/2 J Street  
-
-                            Sacramento, CA 95814
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">📧</span>
-                        <div>
-                            <strong>Email</strong>  
-
-                            support@bluedwarf.io
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">🏢</span>
-                        <div>
-                            <strong>Company</strong>  
-
-                            Elite Marketing Lab LLC  
-
-                            EIN: 99-0948389
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">⏰</span>
-                        <div>
-                            <strong>Support Hours</strong>  
-
-                            Monday - Friday: 9AM - 6PM PST  
-
-                            Weekend: 10AM - 4PM PST
-                        </div>
-                    </div>
+                <div class="professional-item">
+                    <div class="professional-name">Jennifer Walsh</div>
+                    <div class="professional-title">Property Manager</div>
+                    <div class="professional-location">Folsom, CA</div>
+                    <div class="professional-contact">CPM Certified • 200+ properties managed</div>
                 </div>
             </div>
         </div>
@@ -875,13 +640,6 @@
             } finally {
                 loadingMessage.style.display = 'none';
             }
-        });
-        
-        // Contact form functionality
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! We will get back to you within 24 hours.');
-            this.reset();
         });
         
         // Login form functionality

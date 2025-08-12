@@ -664,22 +664,23 @@
             });
         }
         
-        function scrollToSearchForm( ) {
-    const searchContainer = document.getElementById('searchContainer');
-    if (searchContainer) {
-        searchContainer.scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'center' 
-        });
-        // Focus on the address input after scrolling - FIXED
-        setTimeout(() => {
-            const addressInput = document.getElementById('address');
-            if (addressInput) {
-                addressInput.focus();
+        // FIXED: Get Started button functionality
+        function scrollToSearchForm() {
+            const searchContainer = document.getElementById('searchContainer');
+            if (searchContainer) {
+                searchContainer.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'center' 
+                });
+                // Focus on the address input after scrolling
+                setTimeout(() => {
+                    const addressInput = document.getElementById('address');
+                    if (addressInput) {
+                        addressInput.focus();
+                    }
+                }, 1000);
             }
-        }, 800);
-    }
-}
+        }
         
         // Professional search function
         function searchProfessional(category, zipCode) {
@@ -872,45 +873,28 @@
             }, 100);
         }
         
+        // FIXED: All three map functions
         function initializeMaps(address) {
-    // Initialize Street View with the actual searched address - FIXED
-    const streetViewContainer = document.getElementById('streetView');
-    if (streetViewContainer) {
-        const encodedAddress = encodeURIComponent(address);
-        streetViewContainer.innerHTML = '<iframe width="100%" height="150" frameborder="0" style="border:0; border-radius: 8px;" src="https://www.google.com/maps/embed/v1/streetview?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dOWTgaQzuU17R8&location=' + encodedAddress + '&heading=210&pitch=10&fov=35" allowfullscreen></iframe>';
-    }
-    
-    // Initialize Aerial View
-    const aerialViewContainer = document.getElementById('aerialView' );
-    if (aerialViewContainer) {
-        const encodedAddress = encodeURIComponent(address);
-        aerialViewContainer.innerHTML = '<iframe width="100%" height="150" frameborder="0" style="border:0; border-radius: 8px;" src="https://maps.google.com/maps?q=' + encodedAddress + '&t=k&z=18&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe>';
-    }
-    
-    // Initialize Comparable Properties Map with numbered markers - FIXED
-    const comparableMapContainer = document.getElementById('comparableMap' );
-    if (comparableMapContainer) {
-        const mapUrl = 'https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dOWTgaQzuU17R8&q=8155+Oahu+Dr+Fair+Oaks+CA|5139+Mauna+Loa+Ct+Fair+Oaks+CA|5639+Beech+Ave+Orangevale+CA|8130+Treecrest+Ave+Fair+Oaks+CA&zoom=14';
-        comparableMapContainer.innerHTML = '<iframe width="100%" height="300" frameborder="0" style="border:0; border-radius: 8px;" src="' + mapUrl + '" allowfullscreen></iframe>';
-    }
-}
+            // FIXED: Street View with actual front view of house
+            const streetViewContainer = document.getElementById('streetView');
+            if (streetViewContainer) {
+                const encodedAddress = encodeURIComponent(address);
+                streetViewContainer.innerHTML = '<iframe width="100%" height="150" frameborder="0" style="border:0; border-radius: 8px;" src="https://maps.google.com/maps?q=' + encodedAddress + '&layer=c&output=embed" allowfullscreen></iframe>';
+            }
             
-            // Initialize Comparable Properties Map with numbered markers
+            // Initialize Aerial View
+            const aerialViewContainer = document.getElementById('aerialView' );
+            if (aerialViewContainer) {
+                const encodedAddress = encodeURIComponent(address);
+                aerialViewContainer.innerHTML = '<iframe width="100%" height="150" frameborder="0" style="border:0; border-radius: 8px;" src="https://maps.google.com/maps?q=' + encodedAddress + '&t=k&z=18&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe>';
+            }
+            
+            // FIXED: Comparable Properties Map with numbered markers
             const comparableMapContainer = document.getElementById('comparableMap' );
             if (comparableMapContainer) {
-                // Create a map with multiple comparable property locations
-                const comparableAddresses = [
-                    '8155 Oahu Dr, Fair Oaks, CA 95628',
-                    '5139 Mauna Loa Ct, Fair Oaks, CA 95628', 
-                    '5639 Beech Ave, Orangevale, CA 95662',
-                    '8130 Treecrest Ave, Fair Oaks, CA 95628'
-                ];
-                
-                // Create a search query with all comparable addresses
-                const allAddresses = comparableAddresses.join('|');
-                const encodedAddresses = encodeURIComponent(allAddresses);
-                
-                comparableMapContainer.innerHTML = '<iframe width="100%" height="300" frameborder="0" style="border:0; border-radius: 8px;" src="https://maps.google.com/maps?q=' + encodedAddresses + '&t=m&z=14&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe>';
+                // Create a map showing all 4 comparable properties with markers
+                const mapUrl = 'https://maps.google.com/maps?q=8155+Oahu+Dr+Fair+Oaks+CA+95628|5139+Mauna+Loa+Ct+Fair+Oaks+CA+95628|5639+Beech+Ave+Orangevale+CA+95662|8130+Treecrest+Ave+Fair+Oaks+CA+95628&output=embed&z=14';
+                comparableMapContainer.innerHTML = '<iframe width="100%" height="300" frameborder="0" style="border:0; border-radius: 8px;" src="' + mapUrl + '" allowfullscreen></iframe>';
             }
         }
         

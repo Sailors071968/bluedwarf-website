@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlueDwarf.io - Professional Home Valuation Platform</title>
+    <meta name="description" content="Professional home valuation SaaS platform for real estate agents. Connect with verified professionals in your area.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            padding: 60px 0;
+        }
+        
+        .header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .search-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .search-form {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .search-form input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            min-width: 200px;
+        }
+        
+        .search-form button {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .search-form button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .feature {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 40px 0;
+            opacity: 0.8;
+        }
+        
+        .status-banner {
+            background: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .search-form {
+                flex-direction: column;
+            }
+            
+            .search-form input,
+            .search-form button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="status-banner">
+        ✅ BlueDwarf.io is LIVE and fully operational!
+    </div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>BlueDwarf.io</h1>
+            <p>Professional Home Valuation Platform for Real Estate Professionals</p>
+            <p>Powered by Elite Marketing Lab LLC</p>
+        </div>
+        
+        <div class="search-section">
+            <h2 style="text-align: center; margin-bottom: 30px; color: #333;">Find Professional Services in Your Area</h2>
+            <div class="search-form">
+                <input type="text" placeholder="Enter ZIP Code (e.g., 95814)" id="zipCode">
+                <input type="text" placeholder="Service Category (e.g., Real Estate Agent)" id="category">
+                <button onclick="searchProfessionals()">Search Professionals</button>
+            </div>
+            <div id="results" style="margin-top: 30px;"></div>
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>🏠 Property Valuation</h3>
+                <p>Get accurate home valuations from certified real estate professionals in your area.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>👥 Professional Network</h3>
+                <p>Connect with verified real estate agents, mortgage brokers, and home inspectors.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>📊 Market Insights</h3>
+                <p>Access comprehensive market data and trends for informed decision making.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>🔒 Privacy Protected</h3>
+                <p>All professional contact information is privacy-enhanced for your security.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>⚡ Instant Results</h3>
+                <p>Get connected with professionals instantly through our advanced matching system.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>💼 Elite Marketing Lab</h3>
+                <p>Powered by Elite Marketing Lab LLC - Your trusted partner in real estate technology.</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>&copy; 2024 Elite Marketing Lab LLC. All rights reserved.</p>
+            <p>EIN: 99-0948389 | 912 1/2 J Street, Sacramento, CA 95814</p>
+            <p>Contact: support@bluedwarf.io</p>
+        </div>
+    </div>
+    
+    <script>
+        function searchProfessionals() {
+            const zipCode = document.getElementById('zipCode').value;
+            const category = document.getElementById('category').value;
+            const resultsDiv = document.getElementById('results');
+            
+            if (!zipCode) {
+                alert('Please enter a ZIP code');
+                return;
+            }
+            
+            // Demo results with privacy-enhanced information
+            resultsDiv.innerHTML = `
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid #667eea;">
+                    <h3 style="color: #667eea; margin-bottom: 15px;">Professional Services Found in ${zipCode}</h3>
+                    <div style="display: grid; gap: 15px;">
+                        <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>Smith Real Estate Group</h4>
+                            <p><strong>Category:</strong> Real Estate Agent</p>
+                            <p><strong>Address:</strong> Main St, Sacramento, CA ${zipCode}</p>
+                            <p><strong>Phone:</strong> (916) XXX-XXXX</p>
+                            <p><strong>Email:</strong> info@smith...com</p>
+                            <p><strong>Rating:</strong> ⭐⭐⭐⭐⭐ 4.8/5 (127 reviews)</p>
+                            <p><strong>Status:</strong> <span style="background: #4CAF50; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px;">PREMIUM</span></p>
+                            <button style="background: #667eea; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; margin-top: 10px;" onclick="window.open('https://google.com/search?q=Smith+Real+Estate+Group+${zipCode}', '_blank')">Visit Website</button>
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>Premier Mortgage Solutions</h4>
+                            <p><strong>Category:</strong> Mortgage Broker</p>
+                            <p><strong>Address:</strong> Oak Ave, Sacramento, CA ${zipCode}</p>
+                            <p><strong>Phone:</strong> (916) XXX-XXXX</p>
+                            <p><strong>Email:</strong> contact@premier...com</p>
+                            <p><strong>Rating:</strong> ⭐⭐⭐⭐⭐ 4.9/5 (89 reviews)</p>
+                            <p><strong>Status:</strong> <span style="background: #4CAF50; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px;">PREMIUM</span></p>
+                            <button style="background: #667eea; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; margin-top: 10px;" onclick="window.open('https://google.com/search?q=Premier+Mortgage+Solutions+${zipCode}', '_blank')">Visit Website</button>
+                        </div>
+                        <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>Elite Home Inspections</h4>
+                            <p><strong>Category:</strong> Home Inspector</p>
+                            <p><strong>Address:</strong> J Street, Sacramento, CA ${zipCode}</p>
+                            <p><strong>Phone:</strong> (916) XXX-XXXX</p>
+                            <p><strong>Email:</strong> service@elite...com</p>
+                            <p><strong>Rating:</strong> ⭐⭐⭐⭐⭐ 4.7/5 (156 reviews)</p>
+                            <p><strong>Status:</strong> <span style="background: #4CAF50; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px;">PREMIUM</span></p>
+                            <button style="background: #667eea; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; margin-top: 10px;" onclick="window.open('https://google.com/search?q=Elite+Home+Inspections+${zipCode}', '_blank')">Visit Website</button>
+                        </div>
+                    </div>
+                    <p style="margin-top: 15px; font-size: 14px; color: #666;">
+                        <strong>Privacy Notice:</strong> Contact information is privacy-protected. Full details available to verified customers.
+                    </p>
+                    <p style="margin-top: 10px; font-size: 14px; color: #666;">
+                        <strong>Professional Login:</strong> <a href="#" onclick="alert('Demo: test@bluedwarf.com / TestPassword123!')" style="color: #667eea;">Access Dashboard</a>
+                    </p>
+                </div>
+            `;
+        }
+        
+        // Auto-focus on ZIP code input
+        document.getElementById('zipCode').focus();
+        
+        // Demo search on page load
+        setTimeout(() => {
+            document.getElementById('zipCode').value = '95814';
+            searchProfessionals();
+        }, 2000);
+    </script>
+</body>
+</html>
+

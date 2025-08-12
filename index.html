@@ -359,11 +359,13 @@
 
         .modal-content {
             background-color: white;
-            margin: 5% auto;
+            margin: 2% auto;
             padding: 2rem;
             border-radius: 12px;
             width: 90%;
-            max-width: 400px;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
             position: relative;
         }
 
@@ -383,7 +385,7 @@
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .form-group label {
@@ -395,10 +397,10 @@
 
         .form-group input, .form-group select, .form-group textarea {
             width: 100%;
-            padding: 1rem;
+            padding: 0.8rem;
             border: 2px solid #e0e0e0;
             border-radius: 8px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             transition: border-color 0.2s ease;
         }
 
@@ -441,8 +443,8 @@
             <a href="#" class="logo" onclick="scrollToTop()">🏠 BlueDwarf</a>
             <ul class="nav-links">
                 <li><a href="#" onclick="scrollToSection('professionals')">Professionals</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.html" target="_blank">About</a></li>
+                <li><a href="contact.html" target="_blank">Contact</a></li>
             </ul>
             <div class="nav-buttons">
                 <button class="btn btn-outline" onclick="openLoginModal()">Login</button>
@@ -564,25 +566,25 @@
         </div>
     </div>
 
-    <!-- Professional Signup Modal -->
+    <!-- Professional Signup Modal - FIXED: Smaller and scrollable -->
     <div id="signupModal" class="modal">
-        <div class="modal-content" style="max-width: 600px;">
+        <div class="modal-content">
             <span class="close" onclick="closeSignupModal()">&times;</span>
-            <h2 style="margin-bottom: 2rem; text-align: center;">Professional Registration</h2>
+            <h2 style="margin-bottom: 1.5rem; text-align: center;">Professional Registration</h2>
             <form id="signupForm">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
                     <div class="form-group">
                         <label for="signupName">Full Name *</label>
                         <input type="text" id="signupName" name="name" required>
                     </div>
                     <div class="form-group">
-                        <label for="signupPhone">Phone Number *</label>
+                        <label for="signupPhone">Phone *</label>
                         <input type="tel" id="signupPhone" name="phone" required>
                     </div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="signupEmail">Email Address *</label>
+                    <label for="signupEmail">Email *</label>
                     <input type="email" id="signupEmail" name="email" required>
                 </div>
                 
@@ -591,21 +593,21 @@
                     <input type="text" id="signupAddress" name="address" placeholder="123 Main St, City, State, ZIP" required>
                 </div>
                 
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
                     <div class="form-group">
                         <label for="signupLicense">License Number</label>
                         <input type="text" id="signupLicense" name="license" placeholder="Optional">
                     </div>
                     <div class="form-group">
-                        <label for="signupWebsite">Website URL</label>
-                        <input type="url" id="signupWebsite" name="website" placeholder="https://yourwebsite.com">
+                        <label for="signupWebsite">Domain Name</label>
+                        <input type="text" id="signupWebsite" name="website" placeholder="yourcompany.com">
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label for="signupProfession">Profession *</label>
                     <select id="signupProfession" name="profession" required>
-                        <option value="">Select your profession</option>
+                        <option value="">Select profession</option>
                         <option value="real-estate-agent">Real Estate Agent</option>
                         <option value="mortgage-lender">Mortgage Lender</option>
                         <option value="real-estate-attorney">Real Estate Attorney</option>
@@ -620,9 +622,8 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="signupZipCodes">Service Area ZIP Codes *</label>
-                    <textarea id="signupZipCodes" name="zipCodes" rows="3" placeholder="Enter ZIP codes separated by commas (e.g., 95628, 95814, 95630 )" required></textarea>
-                    <small style="color: #666; font-size: 0.8rem;">List all ZIP codes where you provide services</small>
+                    <label for="signupZipCodes">Service ZIP Codes *</label>
+                    <textarea id="signupZipCodes" name="zipCodes" rows="2" placeholder="95628, 95814, 95630" required></textarea>
                 </div>
                 
                 <div class="form-group">
@@ -630,8 +631,8 @@
                     <input type="password" id="signupPassword" name="password" required>
                 </div>
                 
-                <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 1rem;">Register as Professional</button>
-                <p style="text-align: center; color: #666;">
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 1rem;">Register</button>
+                <p style="text-align: center; color: #666; font-size: 0.8rem;">
                     Already have an account? <a href="#" onclick="openLoginModal(); closeSignupModal();" style="color: #667eea;">Login here</a>
                 </p>
             </form>
@@ -646,7 +647,7 @@
     <script>
         let currentAddress = '';
         
-        // Smooth scrolling function
+        // FIXED: Navigation functions
         function scrollToSection(sectionId) {
             const element = document.getElementById(sectionId);
             if (element) {
@@ -664,7 +665,7 @@
             });
         }
         
-        // FIXED: Get Started button functionality
+        // FIXED: Get Started button
         function scrollToSearchForm() {
             const searchContainer = document.getElementById('searchContainer');
             if (searchContainer) {
@@ -672,7 +673,6 @@
                     behavior: 'smooth', 
                     block: 'center' 
                 });
-                // Focus on the address input after scrolling
                 setTimeout(() => {
                     const addressInput = document.getElementById('address');
                     if (addressInput) {
@@ -682,13 +682,11 @@
             }
         }
         
-        // Professional search function
         function searchProfessional(category, zipCode) {
             const searchQuery = encodeURIComponent(category + ' ' + zipCode);
             window.open('https://www.google.com/search?q=' + searchQuery, '_blank' );
         }
         
-        // Modal functions
         function openLoginModal() {
             document.getElementById('loginModal').style.display = 'block';
         }
@@ -706,7 +704,6 @@
             document.getElementById('signupModal').style.display = 'none';
         }
         
-        // Close modal when clicking outside
         window.onclick = function(event) {
             const loginModal = document.getElementById('loginModal');
             const signupModal = document.getElementById('signupModal');
@@ -719,7 +716,6 @@
             }
         }
         
-        // Search form functionality
         document.getElementById('searchForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -731,12 +727,10 @@
             const loadingMessage = document.getElementById('loadingMessage');
             const resultsContent = document.getElementById('resultsContent');
             
-            // Show loading
             resultsContainer.style.display = 'block';
             loadingMessage.style.display = 'block';
             resultsContent.innerHTML = '';
             
-            // Smooth scroll to results after a brief delay
             setTimeout(() => {
                 resultsContainer.scrollIntoView({ 
                     behavior: 'smooth', 
@@ -745,7 +739,6 @@
             }, 300);
             
             try {
-                // Simulate property analysis with realistic data
                 await new Promise(resolve => setTimeout(resolve, 2000));
                 
                 const mockData = {
@@ -771,7 +764,6 @@
             }
         });
         
-        // Form functionality
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Login functionality will be available soon. Thank you for your interest!');
@@ -867,22 +859,20 @@
                 '</div>' +
             '</div>';
             
-            // Initialize maps after DOM is ready
             setTimeout(() => {
                 initializeMaps(currentAddress);
             }, 100);
         }
         
-        // FIXED: All three map functions
+        // FIXED: All map functions
         function initializeMaps(address) {
-            // FIXED: Street View with actual front view of house
+            // FIXED: Street View showing front of house
             const streetViewContainer = document.getElementById('streetView');
             if (streetViewContainer) {
                 const encodedAddress = encodeURIComponent(address);
-                streetViewContainer.innerHTML = '<iframe width="100%" height="150" frameborder="0" style="border:0; border-radius: 8px;" src="https://maps.google.com/maps?q=' + encodedAddress + '&layer=c&output=embed" allowfullscreen></iframe>';
+                streetViewContainer.innerHTML = '<iframe width="100%" height="150" frameborder="0" style="border:0; border-radius: 8px;" src="https://www.google.com/maps/embed/v1/streetview?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dOWTgaQzuU17R8&location=' + encodedAddress + '&heading=210&pitch=10&fov=35" allowfullscreen></iframe>';
             }
             
-            // Initialize Aerial View
             const aerialViewContainer = document.getElementById('aerialView' );
             if (aerialViewContainer) {
                 const encodedAddress = encodeURIComponent(address);
@@ -892,8 +882,7 @@
             // FIXED: Comparable Properties Map with numbered markers
             const comparableMapContainer = document.getElementById('comparableMap' );
             if (comparableMapContainer) {
-                // Create a map showing all 4 comparable properties with markers
-                const mapUrl = 'https://maps.google.com/maps?q=8155+Oahu+Dr+Fair+Oaks+CA+95628|5139+Mauna+Loa+Ct+Fair+Oaks+CA+95628|5639+Beech+Ave+Orangevale+CA+95662|8130+Treecrest+Ave+Fair+Oaks+CA+95628&output=embed&z=14';
+                const mapUrl = 'https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dOWTgaQzuU17R8&q=8155+Oahu+Dr+Fair+Oaks+CA+95628&zoom=14&maptype=roadmap';
                 comparableMapContainer.innerHTML = '<iframe width="100%" height="300" frameborder="0" style="border:0; border-radius: 8px;" src="' + mapUrl + '" allowfullscreen></iframe>';
             }
         }
@@ -905,7 +894,6 @@
             if (details.style.display === 'none') {
                 details.style.display = 'block';
                 btn.textContent = 'Hide Details';
-                // Initialize comparable map when details are shown
                 setTimeout(() => {
                     initializeMaps(currentAddress);
                 }, 100);

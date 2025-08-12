@@ -126,6 +126,7 @@
             margin-bottom: 3rem;
             font-weight: 400;
         }
+
         .search-container {
             background: white;
             border-radius: 16px;
@@ -298,6 +299,20 @@
             100% { transform: rotate(360deg); }
         }
 
+        .map-container {
+            width: 100%;
+            height: 150px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .large-map-container {
+            width: 100%;
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
         /* Mobile responsive styles */
         @media (max-width: 768px) {
             .nav-links { display: none; }
@@ -431,13 +446,17 @@
         <p>&copy; 2024 Elite Marketing Lab LLC. All rights reserved. | EIN: 99-0948389</p>
         <p>912 1/2 J Street, Sacramento, CA 95814 | support@bluedwarf.io</p>
     </footer>
+
     <script>
+        let currentAddress = '';
+        
         document.getElementById('searchForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const address = document.getElementById('address').value.trim();
             if (!address) return;
             
+            currentAddress = address;
             const resultsContainer = document.getElementById('resultsContainer');
             const loadingMessage = document.getElementById('loadingMessage');
             const resultsContent = document.getElementById('resultsContent');
@@ -510,15 +529,11 @@
                         <div style="display: flex; flex-direction: column; gap: 1rem;">
                             <div style="background: #e8f4fd; padding: 1rem; border-radius: 8px; text-align: center;">
                                 <h4 style="color: #0066cc; margin-bottom: 0.5rem;">Street View</h4>
-                                <div style="background: #ccc; height: 150px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #666;">
-                                    Street View Image
-                                </div>
+                                <div id="streetView" class="map-container"></div>
                             </div>
                             <div style="background: #e8f4fd; padding: 1rem; border-radius: 8px; text-align: center;">
                                 <h4 style="color: #0066cc; margin-bottom: 0.5rem;">Aerial View (2 blocks)</h4>
-                                <div style="background: #ccc; height: 150px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #666;">
-                                    Aerial Map View
-                                </div>
+                                <div id="aerialView" class="map-container"></div>
                             </div>
                         </div>
                     </div>
@@ -570,22 +585,79 @@
                         
                         <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
                             <h3 style="margin-bottom: 1rem;">Comparable Properties Map</h3>
-                            <div style="background: #e9ecef; height: 300px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #666;">
-                                Interactive Map with Comparable Property Markers
-                            </div>
+                            <div id="comparableMap" class="large-map-container"></div>
                         </div>
                     </div>
                 </div>
             `;
+            
+            // Initialize maps after DOM is ready
+            setTimeout(() => {
+                initializeMaps(currentAddress);
+            }, 100);
         }
         
-        function toggleDetails() {
+        function initializeMaps(address) {
+            // Initialize Street View
+            const streetViewContainer = document.getElementById('streetView');
+            if (streetViewContainer) {
+                const encodedAddress = encodeURIComponent(address);
+                streetViewContainer.innerHTML = `
+                    <iframe 
+                        width="100%" 
+                        height="150" 
+                        frameborder="0" 
+                        style="border:0; border-radius: 8px;" 
+                        src="https://www.google.com/maps/embed/v1/streetview?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dOWTgaQzuU17R8&location=${encodedAddress}&heading=210&pitch=10&fov=35"
+                        allowfullscreen>
+                    </iframe>
+                `;
+            }
+            
+            // Initialize Aerial View
+            const aerialViewContainer = document.getElementById('aerialView' );
+            if (aerialViewContainer) {
+                const encodedAddress = encodeURIComponent(address);
+                aerialViewContainer.innerHTML = `
+                    <iframe 
+                        width="100%" 
+                        height="150" 
+                        frameborder="0" 
+                        style="border:0; border-radius: 8px;" 
+                        src="https://www.google.com/maps/embed/v1/view?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dOWTgaQzuU17R8&center=${encodedAddress}&zoom=18&maptype=satellite"
+                        allowfullscreen>
+                    </iframe>
+                `;
+            }
+            
+            // Initialize Comparable Properties Map
+            const comparableMapContainer = document.getElementById('comparableMap' );
+            if (comparableMapContainer) {
+                const encodedAddress = encodeURIComponent(address);
+                comparableMapContainer.innerHTML = `
+                    <iframe 
+                        width="100%" 
+                        height="300" 
+                        frameborder="0" 
+                        style="border:0; border-radius: 8px;" 
+                        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dOWTgaQzuU17R8&q=${encodedAddress}&zoom=15"
+                        allowfullscreen>
+                    </iframe>
+                `;
+            }
+        }
+        
+        function toggleDetails( ) {
             const details = document.getElementById('additionalDetails');
             const btn = document.getElementById('detailsBtn');
             
             if (details.style.display === 'none') {
                 details.style.display = 'block';
                 btn.textContent = 'Hide Details';
+                // Initialize comparable map when details are shown
+                setTimeout(() => {
+                    initializeMaps(currentAddress);
+                }, 100);
             } else {
                 details.style.display = 'none';
                 btn.textContent = 'View Details';

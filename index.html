@@ -423,14 +423,14 @@
         <div class="nav-container">
             <a href="#" class="logo" onclick="scrollToTop()">🏠 BlueDwarf</a>
             <ul class="nav-links">
-                <li><a onclick="scrollToSection('professionals')">Professionals</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <div class="nav-buttons">
-                <button class="btn btn-outline" onclick="openLoginModal()">Login</button>
-                <button class="btn btn-primary" onclick="scrollToSection('hero')">Get Started</button>
-            </div>
+    <li><a href="javascript:void(0)" onclick="scrollToSection('professionals')">Professionals</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+</ul>
+<div class="nav-buttons">
+    <button class="btn btn-outline" onclick="openLoginModal()">Login</button>
+    <button class="btn btn-primary" onclick="scrollToSearchForm()">Get Started</button>
+</div>
         </div>
     </nav>
 
@@ -565,7 +565,17 @@
                 });
             }
         }
-        
+
+        function scrollToSearchForm() {
+    const searchContainer = document.querySelector('.search-container');
+    if (searchContainer) {
+        searchContainer.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center' 
+        });
+    }
+}
+
         function scrollToTop() {
             window.scrollTo({ 
                 top: 0, 

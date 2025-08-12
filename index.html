@@ -443,8 +443,8 @@
             <a href="#" class="logo" onclick="scrollToTop()">🏠 BlueDwarf</a>
             <ul class="nav-links">
                 <li><a href="#" onclick="scrollToSection('professionals')">Professionals</a></li>
-                <li><a href="about.html" target="_blank">About</a></li>
-                <li><a href="contact.html" target="_blank">Contact</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="nav-buttons">
                 <button class="btn btn-outline" onclick="openLoginModal()">Login</button>
@@ -566,7 +566,7 @@
         </div>
     </div>
 
-    <!-- Professional Signup Modal - FIXED: Smaller and scrollable -->
+    <!-- Professional Signup Modal -->
     <div id="signupModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeSignupModal()">&times;</span>
@@ -647,7 +647,6 @@
     <script>
         let currentAddress = '';
         
-        // FIXED: Navigation functions
         function scrollToSection(sectionId) {
             const element = document.getElementById(sectionId);
             if (element) {
@@ -665,7 +664,6 @@
             });
         }
         
-        // FIXED: Get Started button
         function scrollToSearchForm() {
             const searchContainer = document.getElementById('searchContainer');
             if (searchContainer) {
@@ -684,7 +682,7 @@
         
         function searchProfessional(category, zipCode) {
             const searchQuery = encodeURIComponent(category + ' ' + zipCode);
-            window.open('https://www.google.com/search?q=' + searchQuery, '_blank' );
+            window.open('https://www.google.com/search?q=' + searchQuery, '_blank');
         }
         
         function openLoginModal() {
@@ -853,7 +851,7 @@
                     '</div>' +
                     '<div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px;">' +
                         '<h3 style="margin-bottom: 1rem;">Comparable Properties Map</h3>' +
-                        '<p style="color: #666; margin-bottom: 1rem; font-size: 0.9rem;">Numbers on the map correspond to the numbered properties listed above.</p>' +
+                        '<p style="color: #666; margin-bottom: 1rem; font-size: 0.9rem;">Map shows the general area of comparable properties listed above.</p>' +
                         '<div id="comparableMap" class="large-map-container"></div>' +
                     '</div>' +
                 '</div>' +
@@ -864,30 +862,27 @@
             }, 100);
         }
         
-        // FIXED: All map functions
         function initializeMaps(address) {
-            // FIXED: Street View showing front of house
             const streetViewContainer = document.getElementById('streetView');
             if (streetViewContainer) {
                 const encodedAddress = encodeURIComponent(address);
-                streetViewContainer.innerHTML = '<iframe width="100%" height="150" frameborder="0" style="border:0; border-radius: 8px;" src="https://www.google.com/maps/embed/v1/streetview?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dOWTgaQzuU17R8&location=' + encodedAddress + '&heading=210&pitch=10&fov=35" allowfullscreen></iframe>';
+                streetViewContainer.innerHTML = '<iframe width="100%" height="150" frameborder="0" style="border:0; border-radius: 8px;" src="https://maps.google.com/maps?q=' + encodedAddress + '&layer=c&output=embed" allowfullscreen></iframe>';
             }
             
-            const aerialViewContainer = document.getElementById('aerialView' );
+            const aerialViewContainer = document.getElementById('aerialView');
             if (aerialViewContainer) {
                 const encodedAddress = encodeURIComponent(address);
-                aerialViewContainer.innerHTML = '<iframe width="100%" height="150" frameborder="0" style="border:0; border-radius: 8px;" src="https://maps.google.com/maps?q=' + encodedAddress + '&t=k&z=18&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe>';
+                aerialViewContainer.innerHTML = '<iframe width="100%" height="150" frameborder="0" style="border:0; border-radius: 8px;" src="https://maps.google.com/maps?q=' + encodedAddress + '&t=k&z=18&output=embed" allowfullscreen></iframe>';
             }
             
-            // FIXED: Comparable Properties Map with numbered markers
-            const comparableMapContainer = document.getElementById('comparableMap' );
+            const comparableMapContainer = document.getElementById('comparableMap');
             if (comparableMapContainer) {
-                const mapUrl = 'https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dOWTgaQzuU17R8&q=8155+Oahu+Dr+Fair+Oaks+CA+95628&zoom=14&maptype=roadmap';
+                const mapUrl = 'https://maps.google.com/maps?q=Fair+Oaks+CA+95628&t=m&z=14&output=embed';
                 comparableMapContainer.innerHTML = '<iframe width="100%" height="300" frameborder="0" style="border:0; border-radius: 8px;" src="' + mapUrl + '" allowfullscreen></iframe>';
             }
         }
         
-        function toggleDetails( ) {
+        function toggleDetails() {
             const details = document.getElementById('additionalDetails');
             const btn = document.getElementById('detailsBtn');
             
@@ -910,3 +905,4 @@
     </script>
 </body>
 </html>
+

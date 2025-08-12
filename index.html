@@ -328,6 +328,23 @@
             overflow: hidden;
         }
 
+        .property-number {
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            background: #ff9800;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+            z-index: 10;
+        }
+
         /* Modal Styles */
         .modal {
             display: none;
@@ -656,6 +673,10 @@
                     behavior: 'smooth', 
                     block: 'center' 
                 });
+                // Focus on the address input after scrolling
+                setTimeout(() => {
+                    document.getElementById('address').focus();
+                }, 500);
             }
         }
         
@@ -826,28 +847,28 @@
                     '<p style="color: #666; margin-bottom: 1rem;">Based on rentals within a 1.5 mile radius seen in the last 270 days.</p>' +
                     '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">' +
                         '<div style="background: white; padding: 1rem; border-radius: 6px; border-left: 4px solid #ff9800; position: relative;">' +
-                            '<div style="position: absolute; top: -8px; left: -8px; background: #ff9800; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px;">1</div>' +
-                            '<p style="font-weight: 600;">8155 Oahu Dr</p>' +
-                            '<p style="color: #666;">Fair Oaks, CA 95628</p>' +
-                            '<p style="color: #667eea; font-weight: 600;">$2,700 • 3 bed, 2 bath</p>' +
+                            '<div class="property-number">1</div>' +
+                            '<p style="font-weight: 600; margin-left: 20px;">8155 Oahu Dr</p>' +
+                            '<p style="color: #666; margin-left: 20px;">Fair Oaks, CA 95628</p>' +
+                            '<p style="color: #667eea; font-weight: 600; margin-left: 20px;">$2,700 • 3 bed, 2 bath</p>' +
                         '</div>' +
                         '<div style="background: white; padding: 1rem; border-radius: 6px; border-left: 4px solid #ff9800; position: relative;">' +
-                            '<div style="position: absolute; top: -8px; left: -8px; background: #ff9800; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px;">2</div>' +
-                            '<p style="font-weight: 600;">5139 Mauna Loa Ct</p>' +
-                            '<p style="color: #666;">Fair Oaks, CA 95628</p>' +
-                            '<p style="color: #667eea; font-weight: 600;">$2,995 • 4 bed, 2 bath</p>' +
+                            '<div class="property-number">2</div>' +
+                            '<p style="font-weight: 600; margin-left: 20px;">5139 Mauna Loa Ct</p>' +
+                            '<p style="color: #666; margin-left: 20px;">Fair Oaks, CA 95628</p>' +
+                            '<p style="color: #667eea; font-weight: 600; margin-left: 20px;">$2,995 • 4 bed, 2 bath</p>' +
                         '</div>' +
                         '<div style="background: white; padding: 1rem; border-radius: 6px; border-left: 4px solid #ff9800; position: relative;">' +
-                            '<div style="position: absolute; top: -8px; left: -8px; background: #ff9800; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px;">3</div>' +
-                            '<p style="font-weight: 600;">5639 Beech Ave</p>' +
-                            '<p style="color: #666;">Orangevale, CA 95662</p>' +
-                            '<p style="color: #667eea; font-weight: 600;">$2,879 • 3 bed, 2 bath</p>' +
+                            '<div class="property-number">3</div>' +
+                            '<p style="font-weight: 600; margin-left: 20px;">5639 Beech Ave</p>' +
+                            '<p style="color: #666; margin-left: 20px;">Orangevale, CA 95662</p>' +
+                            '<p style="color: #667eea; font-weight: 600; margin-left: 20px;">$2,879 • 3 bed, 2 bath</p>' +
                         '</div>' +
                         '<div style="background: white; padding: 1rem; border-radius: 6px; border-left: 4px solid #ff9800; position: relative;">' +
-                            '<div style="position: absolute; top: -8px; left: -8px; background: #ff9800; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px;">4</div>' +
-                            '<p style="font-weight: 600;">8130 Treecrest Ave</p>' +
-                            '<p style="color: #666;">Fair Oaks, CA 95628</p>' +
-                            '<p style="color: #667eea; font-weight: 600;">$2,500 • 3 bed, 1 bath</p>' +
+                            '<div class="property-number">4</div>' +
+                            '<p style="font-weight: 600; margin-left: 20px;">8130 Treecrest Ave</p>' +
+                            '<p style="color: #666; margin-left: 20px;">Fair Oaks, CA 95628</p>' +
+                            '<p style="color: #667eea; font-weight: 600; margin-left: 20px;">$2,500 • 3 bed, 1 bath</p>' +
                         '</div>' +
                     '</div>' +
                 '</div>' +
@@ -882,11 +903,11 @@
         }
         
         function initializeMaps(address) {
-            // Initialize Street View
+            // Initialize Street View with the actual searched address
             const streetViewContainer = document.getElementById('streetView');
             if (streetViewContainer) {
                 const encodedAddress = encodeURIComponent(address);
-                streetViewContainer.innerHTML = '<iframe width="100%" height="150" frameborder="0" style="border:0; border-radius: 8px;" src="https://maps.google.com/maps?q=' + encodedAddress + '&layer=c&cbll=38.7,-121.3&cbp=11,0,0,0,0&output=embed" allowfullscreen></iframe>';
+                streetViewContainer.innerHTML = '<iframe width="100%" height="150" frameborder="0" style="border:0; border-radius: 8px;" src="https://maps.google.com/maps?q=' + encodedAddress + '&layer=c&output=embed" allowfullscreen></iframe>';
             }
             
             // Initialize Aerial View

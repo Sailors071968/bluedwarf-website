@@ -102,6 +102,11 @@
             background: #5a6fd8;
         }
 
+        .btn-small {
+            padding: 0.4rem 1rem;
+            font-size: 0.8rem;
+        }
+
         .hero {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             padding: 8rem 0 4rem;
@@ -260,16 +265,10 @@
             border-left: 4px solid #667eea;
         }
 
-        .professional-name {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 0.5rem;
-        }
-
         .professional-title {
             color: #667eea;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 1.1rem;
             margin-bottom: 0.5rem;
         }
 
@@ -279,9 +278,10 @@
             margin-bottom: 1rem;
         }
 
-        .professional-contact {
-            font-size: 0.9rem;
+        .professional-description {
             color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
         }
 
         .results-container {
@@ -486,40 +486,40 @@
             <h2 class="section-title">Local Professionals</h2>
             <div class="professionals-list">
                 <div class="professional-item">
-                    <div class="professional-name">Michael Rodriguez</div>
                     <div class="professional-title">Real Estate Agent</div>
                     <div class="professional-location">Sacramento County, CA</div>
-                    <div class="professional-contact">License: 01234567 • 15+ years experience</div>
+                    <div class="professional-description">Experienced agent specializing in residential properties and first-time buyers</div>
+                    <button class="btn btn-primary btn-small" onclick="searchProfessional('Real Estate Agent', '95628')">Website</button>
                 </div>
                 <div class="professional-item">
-                    <div class="professional-name">Sarah Chen</div>
                     <div class="professional-title">Mortgage Lender</div>
                     <div class="professional-location">Fair Oaks, CA</div>
-                    <div class="professional-contact">NMLS: 987654 • First-time buyer specialist</div>
+                    <div class="professional-description">Specialized in home loans and refinancing with competitive rates</div>
+                    <button class="btn btn-primary btn-small" onclick="searchProfessional('Mortgage Lender', '95628')">Website</button>
                 </div>
                 <div class="professional-item">
-                    <div class="professional-name">David Thompson</div>
                     <div class="professional-title">Real Estate Attorney</div>
                     <div class="professional-location">Sacramento, CA</div>
-                    <div class="professional-contact">State Bar: 123456 • Transaction specialist</div>
+                    <div class="professional-description">Expert in real estate transactions and contract negotiations</div>
+                    <button class="btn btn-primary btn-small" onclick="searchProfessional('Real Estate Attorney', '95814')">Website</button>
                 </div>
                 <div class="professional-item">
-                    <div class="professional-name">Lisa Martinez</div>
                     <div class="professional-title">Property Inspector</div>
                     <div class="professional-location">Placer County, CA</div>
-                    <div class="professional-contact">Certified Inspector • 8+ years experience</div>
+                    <div class="professional-description">Certified home inspector with comprehensive inspection services</div>
+                    <button class="btn btn-primary btn-small" onclick="searchProfessional('Property Inspector', '95628')">Website</button>
                 </div>
                 <div class="professional-item">
-                    <div class="professional-name">Robert Kim</div>
                     <div class="professional-title">Insurance Agent</div>
                     <div class="professional-location">Roseville, CA</div>
-                    <div class="professional-contact">License: 0987654 • Home & auto specialist</div>
+                    <div class="professional-description">Home and auto insurance specialist with competitive coverage options</div>
+                    <button class="btn btn-primary btn-small" onclick="searchProfessional('Insurance Agent', '95678')">Website</button>
                 </div>
                 <div class="professional-item">
-                    <div class="professional-name">Jennifer Walsh</div>
                     <div class="professional-title">Property Manager</div>
                     <div class="professional-location">Folsom, CA</div>
-                    <div class="professional-contact">CPM Certified • 200+ properties managed</div>
+                    <div class="professional-description">Professional property management services for residential and commercial properties</div>
+                    <button class="btn btn-primary btn-small" onclick="searchProfessional('Property Manager', '95630')">Website</button>
                 </div>
             </div>
         </div>
@@ -571,6 +571,12 @@
                 top: 0, 
                 behavior: 'smooth' 
             });
+        }
+        
+        // Professional search function
+        function searchProfessional(category, zipCode) {
+            const searchQuery = encodeURIComponent(category + ' ' + zipCode);
+            window.open('https://www.google.com/search?q=' + searchQuery, '_blank' );
         }
         
         // Modal functions
@@ -748,11 +754,22 @@
                 aerialViewContainer.innerHTML = '<iframe width="100%" height="150" frameborder="0" style="border:0; border-radius: 8px;" src="https://maps.google.com/maps?q=' + encodedAddress + '&t=k&z=18&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe>';
             }
             
-            // Initialize Comparable Properties Map
+            // Initialize Comparable Properties Map with multiple markers
             const comparableMapContainer = document.getElementById('comparableMap' );
             if (comparableMapContainer) {
-                const encodedAddress = encodeURIComponent(address);
-                comparableMapContainer.innerHTML = '<iframe width="100%" height="300" frameborder="0" style="border:0; border-radius: 8px;" src="https://maps.google.com/maps?q=' + encodedAddress + '&t=m&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe>';
+                // Create a map with multiple comparable property locations
+                const comparableAddresses = [
+                    '8155 Oahu Dr, Fair Oaks, CA 95628',
+                    '5139 Mauna Loa Ct, Fair Oaks, CA 95628', 
+                    '5639 Beech Ave, Orangevale, CA 95662',
+                    '8130 Treecrest Ave, Fair Oaks, CA 95628'
+                ];
+                
+                // Create a search query with all comparable addresses
+                const allAddresses = comparableAddresses.join('|');
+                const encodedAddresses = encodeURIComponent(allAddresses);
+                
+                comparableMapContainer.innerHTML = '<iframe width="100%" height="300" frameborder="0" style="border:0; border-radius: 8px;" src="https://maps.google.com/maps?q=' + encodedAddresses + '&t=m&z=14&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe>';
             }
         }
         

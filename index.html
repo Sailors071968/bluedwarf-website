@@ -495,11 +495,7 @@
                 displayResults(mockData);
             } catch (error) {
                 console.error('Error:', error);
-                resultsContent.innerHTML = \`
-                    <div style="text-align: center; padding: 2rem; background: #fff3cd; border-radius: 8px; margin: 1rem 0;">
-                        <p style="color: #856404; font-weight: 600;">Error analyzing property. Please try again.</p>
-                    </div>
-                \`;
+                resultsContent.innerHTML = '<div style="text-align: center; padding: 2rem; background: #fff3cd; border-radius: 8px; margin: 1rem 0;"><p style="color: #856404; font-weight: 600;">Error analyzing property. Please try again.</p></div>';
             } finally {
                 loadingMessage.style.display = 'none';
             }
@@ -509,87 +505,79 @@
             const resultsContent = document.getElementById('resultsContent');
             const property = data.property;
             
-            resultsContent.innerHTML = \`
-                <div style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin: 1rem 0;">
-                    <h2 style="font-size: 2rem; font-weight: 700; color: #333; margin-bottom: 2rem; text-align: center;">\${property.address}</h2>
-                    
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
-                        <div>
-                            <h3 style="font-size: 1.5rem; font-weight: 600; color: #667eea; margin-bottom: 1rem;">Property Details</h3>
-                            <div style="background: #f8f9ff; padding: 1.5rem; border-radius: 8px;">
-                                <p style="margin-bottom: 0.5rem;"><strong>Estimated Value:</strong> \${property.price}</p>
-                                <p style="margin-bottom: 0.5rem;"><strong>Bedrooms:</strong> \${property.beds}</p>
-                                <p style="margin-bottom: 0.5rem;"><strong>Bathrooms:</strong> \${property.baths}</p>
-                                <p style="margin-bottom: 0.5rem;"><strong>Square Feet:</strong> \${property.sqft}</p>
-                                <p style="margin-bottom: 0.5rem;"><strong>Year Built:</strong> \${property.yearBuilt}</p>
-                                <p style="margin-bottom: 0.5rem;"><strong>Monthly Rent Est:</strong> \${property.monthlyRent}</p>
-                            </div>
-                        </div>
-                        
-                        <div style="display: flex; flex-direction: column; gap: 1rem;">
-                            <div style="background: #e8f4fd; padding: 1rem; border-radius: 8px; text-align: center;">
-                                <h4 style="color: #0066cc; margin-bottom: 0.5rem;">Street View</h4>
-                                <div id="streetView" class="map-container"></div>
-                            </div>
-                            <div style="background: #e8f4fd; padding: 1rem; border-radius: 8px; text-align: center;">
-                                <h4 style="color: #0066cc; margin-bottom: 0.5rem;">Aerial View (2 blocks)</h4>
-                                <div id="aerialView" class="map-container"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div style="background: #fff8e1; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
-                        <h3 style="color: #f57c00; margin-bottom: 1rem;">Comparable Properties</h3>
-                        <p style="color: #666; margin-bottom: 1rem;">Based on rentals within a 1.5 mile radius seen in the last 270 days.</p>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-                            <div style="background: white; padding: 1rem; border-radius: 6px; border-left: 4px solid #ff9800;">
-                                <p style="font-weight: 600;">8155 Oahu Dr</p>
-                                <p style="color: #666;">Fair Oaks, CA 95628</p>
-                                <p style="color: #667eea; font-weight: 600;">$2,700 • 3 bed, 2 bath</p>
-                            </div>
-                            <div style="background: white; padding: 1rem; border-radius: 6px; border-left: 4px solid #ff9800;">
-                                <p style="font-weight: 600;">5139 Mauna Loa Ct</p>
-                                <p style="color: #666;">Fair Oaks, CA 95628</p>
-                                <p style="color: #667eea; font-weight: 600;">$2,995 • 4 bed, 2 bath</p>
-                            </div>
-                            <div style="background: white; padding: 1rem; border-radius: 6px; border-left: 4px solid #ff9800;">
-                                <p style="font-weight: 600;">5639 Beech Ave</p>
-                                <p style="color: #666;">Orangevale, CA 95662</p>
-                                <p style="color: #667eea; font-weight: 600;">$2,879 • 3 bed, 2 bath</p>
-                            </div>
-                            <div style="background: white; padding: 1rem; border-radius: 6px; border-left: 4px solid #ff9800;">
-                                <p style="font-weight: 600;">8130 Treecrest Ave</p>
-                                <p style="color: #666;">Fair Oaks, CA 95628</p>
-                                <p style="color: #667eea; font-weight: 600;">$2,500 • 3 bed, 1 bath</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div style="text-align: center;">
-                        <button onclick="toggleDetails()" id="detailsBtn" style="background: #667eea; color: white; border: none; padding: 1rem 2rem; border-radius: 8px; font-weight: 600; cursor: pointer;">View Details</button>
-                    </div>
-                    
-                    <div id="additionalDetails" style="display: none; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #eee;">
-                        <div style="background: #f0f8ff; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
-                            <h3 style="color: #0066cc; margin-bottom: 1rem;">Estimated Monthly Rent: \${property.monthlyRent}</h3>
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                                <span style="font-weight: 600;">Low Estimate</span>
-                                <span style="font-weight: 600;">High Estimate</span>
-                            </div>
-                            <div style="background: linear-gradient(to right, #4CAF50, #2196F3); height: 8px; border-radius: 4px; margin-bottom: 0.5rem;"></div>
-                            <div style="display: flex; justify-content: space-between;">
-                                <span style="color: #4CAF50; font-weight: 600;">\${property.lowEstimate}</span>
-                                <span style="color: #2196F3; font-weight: 600;">\${property.highEstimate}</span>
-                            </div>
-                        </div>
-                        
-                        <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px;">
-                            <h3 style="margin-bottom: 1rem;">Comparable Properties Map</h3>
-                            <div id="comparableMap" class="large-map-container"></div>
-                        </div>
-                    </div>
-                </div>
-            \`;
+            resultsContent.innerHTML = '<div style="background: white; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.1); margin: 1rem 0;">' +
+                '<h2 style="font-size: 2rem; font-weight: 700; color: #333; margin-bottom: 2rem; text-align: center;">' + property.address + '</h2>' +
+                '<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">' +
+                    '<div>' +
+                        '<h3 style="font-size: 1.5rem; font-weight: 600; color: #667eea; margin-bottom: 1rem;">Property Details</h3>' +
+                        '<div style="background: #f8f9ff; padding: 1.5rem; border-radius: 8px;">' +
+                            '<p style="margin-bottom: 0.5rem;"><strong>Estimated Value:</strong> ' + property.price + '</p>' +
+                            '<p style="margin-bottom: 0.5rem;"><strong>Bedrooms:</strong> ' + property.beds + '</p>' +
+                            '<p style="margin-bottom: 0.5rem;"><strong>Bathrooms:</strong> ' + property.baths + '</p>' +
+                            '<p style="margin-bottom: 0.5rem;"><strong>Square Feet:</strong> ' + property.sqft + '</p>' +
+                            '<p style="margin-bottom: 0.5rem;"><strong>Year Built:</strong> ' + property.yearBuilt + '</p>' +
+                            '<p style="margin-bottom: 0.5rem;"><strong>Monthly Rent Est:</strong> ' + property.monthlyRent + '</p>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div style="display: flex; flex-direction: column; gap: 1rem;">' +
+                        '<div style="background: #e8f4fd; padding: 1rem; border-radius: 8px; text-align: center;">' +
+                            '<h4 style="color: #0066cc; margin-bottom: 0.5rem;">Street View</h4>' +
+                            '<div id="streetView" class="map-container"></div>' +
+                        '</div>' +
+                        '<div style="background: #e8f4fd; padding: 1rem; border-radius: 8px; text-align: center;">' +
+                            '<h4 style="color: #0066cc; margin-bottom: 0.5rem;">Aerial View (2 blocks)</h4>' +
+                            '<div id="aerialView" class="map-container"></div>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+                '<div style="background: #fff8e1; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">' +
+                    '<h3 style="color: #f57c00; margin-bottom: 1rem;">Comparable Properties</h3>' +
+                    '<p style="color: #666; margin-bottom: 1rem;">Based on rentals within a 1.5 mile radius seen in the last 270 days.</p>' +
+                    '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">' +
+                        '<div style="background: white; padding: 1rem; border-radius: 6px; border-left: 4px solid #ff9800;">' +
+                            '<p style="font-weight: 600;">8155 Oahu Dr</p>' +
+                            '<p style="color: #666;">Fair Oaks, CA 95628</p>' +
+                            '<p style="color: #667eea; font-weight: 600;">$2,700 • 3 bed, 2 bath</p>' +
+                        '</div>' +
+                        '<div style="background: white; padding: 1rem; border-radius: 6px; border-left: 4px solid #ff9800;">' +
+                            '<p style="font-weight: 600;">5139 Mauna Loa Ct</p>' +
+                            '<p style="color: #666;">Fair Oaks, CA 95628</p>' +
+                            '<p style="color: #667eea; font-weight: 600;">$2,995 • 4 bed, 2 bath</p>' +
+                        '</div>' +
+                        '<div style="background: white; padding: 1rem; border-radius: 6px; border-left: 4px solid #ff9800;">' +
+                            '<p style="font-weight: 600;">5639 Beech Ave</p>' +
+                            '<p style="color: #666;">Orangevale, CA 95662</p>' +
+                            '<p style="color: #667eea; font-weight: 600;">$2,879 • 3 bed, 2 bath</p>' +
+                        '</div>' +
+                        '<div style="background: white; padding: 1rem; border-radius: 6px; border-left: 4px solid #ff9800;">' +
+                            '<p style="font-weight: 600;">8130 Treecrest Ave</p>' +
+                            '<p style="color: #666;">Fair Oaks, CA 95628</p>' +
+                            '<p style="color: #667eea; font-weight: 600;">$2,500 • 3 bed, 1 bath</p>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+                '<div style="text-align: center;">' +
+                    '<button onclick="toggleDetails()" id="detailsBtn" style="background: #667eea; color: white; border: none; padding: 1rem 2rem; border-radius: 8px; font-weight: 600; cursor: pointer;">View Details</button>' +
+                '</div>' +
+                '<div id="additionalDetails" style="display: none; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #eee;">' +
+                    '<div style="background: #f0f8ff; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">' +
+                        '<h3 style="color: #0066cc; margin-bottom: 1rem;">Estimated Monthly Rent: ' + property.monthlyRent + '</h3>' +
+                        '<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">' +
+                            '<span style="font-weight: 600;">Low Estimate</span>' +
+                            '<span style="font-weight: 600;">High Estimate</span>' +
+                        '</div>' +
+                        '<div style="background: linear-gradient(to right, #4CAF50, #2196F3); height: 8px; border-radius: 4px; margin-bottom: 0.5rem;"></div>' +
+                        '<div style="display: flex; justify-content: space-between;">' +
+                            '<span style="color: #4CAF50; font-weight: 600;">' + property.lowEstimate + '</span>' +
+                            '<span style="color: #2196F3; font-weight: 600;">' + property.highEstimate + '</span>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px;">' +
+                        '<h3 style="margin-bottom: 1rem;">Comparable Properties Map</h3>' +
+                        '<div id="comparableMap" class="large-map-container"></div>' +
+                    '</div>' +
+                '</div>' +
+            '</div>';
             
             // Initialize maps after DOM is ready
             setTimeout(() => {
@@ -598,52 +586,25 @@
         }
         
         function initializeMaps(address) {
-            // Initialize Street View - Using Google Street View embed
+            // Initialize Street View
             const streetViewContainer = document.getElementById('streetView');
             if (streetViewContainer) {
                 const encodedAddress = encodeURIComponent(address);
-                streetViewContainer.innerHTML = \`
-                    <iframe 
-                        width="100%" 
-                        height="150" 
-                        frameborder="0" 
-                        style="border:0; border-radius: 8px;" 
-                        src="https://www.google.com/maps/embed?pb=!4v1699999999999!6m8!1m7!1s\${encodedAddress}!2m2!1d38.7!2d-121.3!3f0!7i16384!8i8192"
-                        allowfullscreen>
-                    </iframe>
-                \`;
+                streetViewContainer.innerHTML = '<iframe width="100%" height="150" frameborder="0" style="border:0; border-radius: 8px;" src="https://maps.google.com/maps?q=' + encodedAddress + '&layer=c&cbll=38.7,-121.3&cbp=11,0,0,0,0&output=embed" allowfullscreen></iframe>';
             }
             
-            // Initialize Aerial View - Using Google Maps satellite view
+            // Initialize Aerial View
             const aerialViewContainer = document.getElementById('aerialView' );
             if (aerialViewContainer) {
                 const encodedAddress = encodeURIComponent(address);
-                aerialViewContainer.innerHTML = \`
-                    <iframe 
-                        width="100%" 
-                        height="150" 
-                        frameborder="0" 
-                        style="border:0; border-radius: 8px;" 
-                        src="https://maps.google.com/maps?q=\${encodedAddress}&t=k&z=18&ie=UTF8&iwloc=&output=embed"
-                        allowfullscreen>
-                    </iframe>
-                \`;
+                aerialViewContainer.innerHTML = '<iframe width="100%" height="150" frameborder="0" style="border:0; border-radius: 8px;" src="https://maps.google.com/maps?q=' + encodedAddress + '&t=k&z=18&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe>';
             }
             
-            // Initialize Comparable Properties Map - Using regular Google Maps
+            // Initialize Comparable Properties Map
             const comparableMapContainer = document.getElementById('comparableMap' );
             if (comparableMapContainer) {
                 const encodedAddress = encodeURIComponent(address);
-                comparableMapContainer.innerHTML = \`
-                    <iframe 
-                        width="100%" 
-                        height="300" 
-                        frameborder="0" 
-                        style="border:0; border-radius: 8px;" 
-                        src="https://maps.google.com/maps?q=\${encodedAddress}&t=m&z=15&ie=UTF8&iwloc=&output=embed"
-                        allowfullscreen>
-                    </iframe>
-                \`;
+                comparableMapContainer.innerHTML = '<iframe width="100%" height="300" frameborder="0" style="border:0; border-radius: 8px;" src="https://maps.google.com/maps?q=' + encodedAddress + '&t=m&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe>';
             }
         }
         
